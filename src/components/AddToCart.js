@@ -9,7 +9,8 @@ import {Button} from "../styles/Button";
 
 const AddToCart = ({product}) => {
 
-    const{id , colors , stock} = product;
+    // const{id , colors , stock} = product;
+    const{colors , stock} = product;
 
     const [color , setColor]= useState(colors[0]);
 
