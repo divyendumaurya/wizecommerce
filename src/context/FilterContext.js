@@ -14,6 +14,8 @@ const initialState = {
     sorting_value: "lowest",
     filters :{
         text : '',
+        category : "all",
+        company : "all",
     },
 };
 
@@ -61,7 +63,7 @@ useEffect(() =>{
     dispatch ({ type: "FILTER_PRODUCTS"});
     dispatch({type :"SORTING_PRODUCTS" });
 }
-, [products,state.sorting_value , state.filters])
+, [products,state.sorting_value , state.filters]);
 
 
 // to load all the products for grid and list view 

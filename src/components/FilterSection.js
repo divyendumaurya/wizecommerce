@@ -4,8 +4,31 @@ import styled from 'styled-components';
 
 
 const FilterSection = () => {
-  const {filters : {text}, 
+  const {filters : {text , category},
+  all_products,
   updateFilterValue} = useFilterContext();
+  
+
+
+
+// Get the unique data of each feild 
+const getUniqueData= (data, attr) =>{
+  let newVal = data.map((curElem)=>{
+return curElem[attr];
+  });
+
+
+ return ( newVal = ["All" , ...new Set(newVal)]);
+  
+}
+
+
+
+
+  // for unique data 
+  const categoryOnlyData = getUniqueData( all_products , "category");
+
+
   return (
     <Wrapper>
       <div className="filter-search">
@@ -17,6 +40,42 @@ const FilterSection = () => {
         onChange={updateFilterValue} />
         </form>
       </div>
+
+
+       <div className="filter-category">
+        <h3>Category</h3>
+        <div>
+          {categoryOnlyData.map((curElem, index)=>{
+            return <button 
+            key ={index}
+            type='button'
+             name='category'
+             value ={curElem}
+            onClick={updateFilterValue}
+           > {curElem}</button>
+          })}
+        </div>
+      </div> 
+
+
+      {/* <div className="filter-category">
+        <h3>Category</h3>
+        <div>
+          {categoryData.map ((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                name="category"
+                value={curElem}
+                className={curElem === category ? "active" : ""}
+                onClick={updateFilterValue}>
+                {curElem}
+              </button>
+            );
+          })}
+        </div>
+      </div> */}
     </Wrapper>
   )
 }
