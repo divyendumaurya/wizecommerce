@@ -4,58 +4,59 @@ import styled from 'styled-components';
 
 
 const FilterSection = () => {
-  const {filters : {text , category},
-  all_products,
-  updateFilterValue} = useFilterContext();
-  
+  const {filters : {text},
+  // const { filters: { text, category },
+    all_products,
+    updateFilterValue } = useFilterContext();
 
 
 
-// Get the unique data of each feild 
-const getUniqueData= (data, attr) =>{
-  let newVal = data.map((curElem)=>{
-return curElem[attr];
-  });
+
+  // Get the unique data of each field 
+  const getUniqueData = (data, attr) => {
+    let newVal = data.map((curElem) => {
+      return curElem[attr];
+    });
 
 
- return ( newVal = ["All" , ...new Set(newVal)]);
-  
-}
+    return (newVal = ["All", ...new Set(newVal)]);
+
+  }
 
 
 
 
   // for unique data 
-  const categoryOnlyData = getUniqueData( all_products , "category");
+  const categoryOnlyData = getUniqueData(all_products, "category");
 
 
   return (
     <Wrapper>
       <div className="filter-search">
         <form onSubmit={(e) => e.preventDefault()} >
-        <input type="text" 
-        name='text' 
-        placeholder="Search"
-        value={text} 
-        onChange={updateFilterValue} />
+          <input type="text"
+            name='text'
+            placeholder="Search"
+            value={text}
+            onChange={updateFilterValue} />
         </form>
       </div>
 
 
-       <div className="filter-category">
+      <div className="filter-category">
         <h3>Category</h3>
         <div>
-          {categoryOnlyData.map((curElem, index)=>{
-            return <button 
-            key ={index}
-            type='button'
-             name='category'
-             value ={curElem}
-            onClick={updateFilterValue}
-           > {curElem}</button>
+          {categoryOnlyData.map((curElem, index) => {
+            return <button
+              key={index}
+              type='button'
+              name='category'
+              value={curElem}
+              onClick={updateFilterValue}
+            > {curElem}</button>
           })}
         </div>
-      </div> 
+      </div>
 
 
       {/* <div className="filter-category">

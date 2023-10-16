@@ -3,10 +3,13 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu , CgClose } from "react-icons/cg";
+import { useAuth0 } from "@auth0/auth0-react";
+import {Button} from "../styles/Button"
 
 const Nav = () =>{
 
 const [menuIcon , setMenuIcon] = useState();
+const { loginWithRedirect, logout , isAuthenticated} = useAuth0();
 
 
 
@@ -184,6 +187,23 @@ const [menuIcon , setMenuIcon] = useState();
                 <li>
                     <NavLink  to  = '/contact'  className = 'navbar-link '  onClick={() => setMenuIcon(false)}>Contact</NavLink>
                 </li>
+
+                {/* Login Logout func  */}
+
+                {
+                  isAuthenticated ? (
+                    <li>
+                  <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                    Log Out
+                  </Button> </li> ) : (<li>
+                <Button onClick={() => loginWithRedirect()}>Log In</Button>;
+                  </li>
+                    
+                  )
+                }
+
+                
+
                 <li>
                     <NavLink to = '/cart' className='navbar-link  cart-trolley--link' onClick={() => setMenuIcon(false)}>
                         <FiShoppingCart className ='cart-trolley'/> 
