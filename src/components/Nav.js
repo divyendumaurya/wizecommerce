@@ -188,6 +188,7 @@ const { loginWithRedirect, logout , isAuthenticated} = useAuth0();
                     <NavLink  to  = '/contact'  className = 'navbar-link '  onClick={() => setMenuIcon(false)}>Contact</NavLink>
                 </li>
 
+
                 {/* Login Logout func  */}
 
                 {
@@ -201,6 +202,7 @@ const { loginWithRedirect, logout , isAuthenticated} = useAuth0();
                     
                   )
                 }
+
 
                 
 
